@@ -1,4 +1,4 @@
-# React Native Starter Kit Builder
+# React Native Boilerplate Builder
 
 This repo is used to create a new React Native App, using the latest version of React Native and all dependencies.
 
