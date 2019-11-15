@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {
-  Container, Content, Text, H3, Button, View,
+  Container, Text, H3, Button, View,
 } from 'native-base';
 import Spacer from './Spacer';
 
