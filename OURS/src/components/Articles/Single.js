@@ -5,6 +5,7 @@ import {
   Container, Content, Card, CardItem, Body, H3, Text,
 } from 'native-base';
 import { Loading, Error, Spacer } from '../UI';
+import { errorMessages } from '../../constants/messages';
 
 const ArticlesSingle = ({
   error, loading, article, reFetch,
@@ -12,6 +13,11 @@ const ArticlesSingle = ({
   if (error) {
     return <Error content={error} tryAgain={reFetch} />;
   }
+
+  if (Object.keys(article).length < 1) {
+    return <Error content={errorMessages.articles404} />;
+  }
+
   if (loading) {
     return <Loading content={loading} />;
   }

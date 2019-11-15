@@ -27,14 +27,6 @@ export const errorMessages = {
   passwordsDontMatch: 'Passwords do not match',
 
   // Articles
+  articlesEmpty: 'No articles found',
   articles404: 'This article could not be found',
-
-  // Recipes
-  recipes404: 'This recipe could not be found',
-
-  // Stores
-  stores404: 'This store could not be found',
-
-  // Produce
-  produce404: 'This produce could not be found',
 };

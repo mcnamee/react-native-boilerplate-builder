@@ -6,6 +6,7 @@ import {
   Container, Card, CardItem, Body, Text, Button,
 } from 'native-base';
 import { Error, Spacer } from '../UI';
+import { errorMessages } from '../../constants/messages';
 
 const ArticlesList = ({
   error, loading, list, reFetch,
@@ -14,6 +15,10 @@ const ArticlesList = ({
 
   if (error) {
     return <Error content={error} tryAgain={reFetch} />;
+  }
+
+  if (list.length < 1) {
+    return <Error content={errorMessages.articlesEmpty} />;
   }
 
   return (
@@ -88,7 +93,7 @@ const ArticlesList = ({
 
 ArticlesList.propTypes = {
   error: PropTypes.string,
-  loading: PropTypes.bool.isRequired,
+  loading: PropTypes.bool,
   list: PropTypes.arrayOf(
     PropTypes.shape({
       placeholder: PropTypes.bool,
@@ -105,6 +110,7 @@ ArticlesList.propTypes = {
 
 ArticlesList.defaultProps = {
   error: null,
+  loading: false,
   reFetch: null,
 };
 
