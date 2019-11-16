@@ -5,9 +5,7 @@ import Config from '../constants/config';
 /**
  * Axios defaults
  */
-axios.defaults.baseURL = Config.isDevEnv
-  ? 'https://www.digitalsupply.co/wp-json/wp'
-  : 'https://www.digitalsupply.co/wp-json/wp';
+axios.defaults.baseURL = Config.apiBaseUrl;
 
 // Headers
 axios.defaults.headers.common['Content-Type'] = 'application/json';

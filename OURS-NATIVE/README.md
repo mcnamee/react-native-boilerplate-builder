@@ -1,19 +1,18 @@
-# React Native Starter Kit
+# AwesomeProject - React Native App
 
 ---
 
 ## 👋 Intro
 
-This boilerplate launches with a [React Native app](https://facebook.github.io/react-native/).
+This project was bootstrapped with [React Native](https://facebook.github.io/react-native/).
 
 The project is _super_ helpful to kick-start your next project, as it provides a lot of the common tools you may reach for, all ready to go. Specifically:
 
-- A shared React and React Native structure
 - __Flux architecture__
     - [Redux](https://redux.js.org/docs/introduction/)
     - Redux Wrapper: [Rematch](https://github.com/rematch/rematch)
 - __Routing and navigation__
-    - [React Native Router Flux](https://github.com/aksonov/react-native-router-flux) for native mobile
+    - [React Native Router Flux](https://github.com/aksonov/react-native-router-flux) for native mobile navigation
 - __Data Caching / Offline__
     - [Redux Persist](https://github.com/rt2zz/redux-persist)
 - __UI Toolkit/s__
@@ -21,19 +20,9 @@ The project is _super_ helpful to kick-start your next project, as it provides a
 - __Code Linting__ with
     - [Airbnb's JS Linting](https://github.com/airbnb/javascript) guidelines
 - __Deployment strategy__
-    - [Both manual and automated strategies](/docs/deploy.md)
+    - [Both manual and automated strategies](/documentation/deploy.md)
 - __Splash Screen + Assets__
     - [React Native Splash Screen](https://github.com/crazycodeboy/react-native-splash-screen)
-
----
-
-## 📖 Docs
-
-- [Contributing to this project](/docs/contributing.md)
-- [FAQs & Opinions](/docs/faqs.md)
-- [Tests & testing](/docs/testing.md)
-- [Understanding the file structure](/docs/file-structure.md)
-- [Deploy the app](/docs/deploy.md)
 
 ---
 
@@ -66,6 +55,16 @@ npx react-native run-ios --simulator="iPhone 11"
 #  - Example device specs: https://medium.com/pvtl/react-native-android-development-on-mac-ef7481f65e47#d5da
 npx react-native run-android
 ```
+
+---
+
+## 📖 Docs
+
+- [Contributing to this project](/documentation/contributing.md)
+- [FAQs & Opinions](/documentation/faqs.md)
+- [Tests & testing](/documentation/testing.md)
+- [Understanding the file structure](/documentation/file-structure.md)
+- [Deploy the app](/documentation/deploy.md)
 
 ---
 
