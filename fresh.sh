@@ -19,6 +19,7 @@ fi
 
 # Replace all of OUR files with the app name
 LC_ALL=C find ./OURS -type f -exec sed -i '' 's/AwesomeProject/'"$APP_NAME"'/g' {} +
+LC_ALL=C find ./OURS-NATIVE -type f -exec sed -i '' 's/AwesomeProject/'"$APP_NAME"'/g' {} +
 
 # Install the latest React Native into a subdirectory
 npx react-native init $APP_NAME
@@ -40,9 +41,10 @@ cd ../
 # Eject Native Base
 node node_modules/native-base/ejectTheme.js
 
-# Copy our files (eg. appicon, launch screen)
-rsync -r --inplace ./OURS/ios/. ./ios/$APP_NAME && rm -rf ./OURS/ios
+# Copy our files (eg. appicon, launch screen, src code etc)
+rsync -r --inplace ./OURS-NATIVE/ios/. ./ios/$APP_NAME && rm -rf ./OURS-NATIVE/ios
 rsync -r --inplace ./OURS/. ./ && rm -rf ./OURS
+rsync -r --inplace ./OURS-NATIVE/. ./ && rm -rf ./OURS-NATIVE
 
 # Name the app correctly
 LC_ALL=C find . -type f -exec sed -i '' 's/com.AwesomeProject/com.'"$APP_NAME"'/g' {} +
