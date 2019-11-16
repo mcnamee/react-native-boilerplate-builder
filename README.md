@@ -2,7 +2,7 @@
 
 This repo is used to create a new React &/or React Native App, using the latest version of React/React Native and all dependencies.
 
-`fresh.sh` essentially just:
+`build.sh` essentially just:
 
 - `npx create-react-app` or `react-native init`'s a new app
     - _For React Native - Expo is great, however the majority of apps I build need third party native modules, so I now just default to plain old react-native_
@@ -33,5 +33,5 @@ Creating a project where dependency versions are not locked, can lead to instabi
 ## 🚀 Usage
 
 ```bash
-bash fresh.sh
+bash build.sh
 ```
