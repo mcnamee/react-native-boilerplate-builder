@@ -1,11 +1,46 @@
 #!/usr/bin/env bash
 
-# Config
+# Arguments
 # ---------------------------------------------
-# App Name
-echo -e "\n  ➤  What would you like the new App to be called? [eg. AwesomeProject]"
-read -p "== " APP_NAME
 
+for i in "$@"
+do
+  case $i in
+    -n=*|--name=*)
+      APP_NAME="${i#*=}"
+      shift # past argument=value
+    ;;
+    -t=*|--type=*)
+      APP_TYPE="${i#*=}"
+      shift # past argument=value
+    ;;
+    *)
+      # unknown option
+    ;;
+  esac
+done
+
+# Config - When arguments not supplied
+# ---------------------------------------------
+
+# App Name
+if [[ -z "$APP_NAME" ]]; then
+  echo -e "\n  ➤  What would you like the new App to be called? [eg. AwesomeProject]"
+  read -p " == " APP_NAME
+fi
+
+# App Type
+if [[ -z "$APP_TYPE" ]]; then
+  echo -e "\n  ➤  What type of app are you wanting to build? (enter the number)"
+  echo -e "\n  1. React"
+  echo -e "  2. React Native \n"
+  read -p " == " APP_TYPE
+fi
+
+# Validate our Config
+# ---------------------------------------------
+
+# App Name
 APP_NAME=$(echo $APP_NAME | tr -cd '[[:alnum:]].')
 APP_NAME_LOWER=`echo "$APP_NAME" | tr '[:upper:]' '[:lower:]'`
 
@@ -13,6 +48,9 @@ if [[ -z "$APP_NAME" ]]; then
   echo -e "\n  ⚠  Please enter an App Name..."
   exit 1
 fi
+
+# App Type
+[ "$APP_TYPE" != "${APP_TYPE#[12]}" ] && APP_TYPE=1 || APP_TYPE=2
 
 # Let's Go, Let's Go, Let's Go
 # ---------------------------------------------
