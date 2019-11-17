@@ -6,6 +6,7 @@ import Config from '../constants/config';
 import { getFeaturedImageUrl } from '../lib/images';
 import { stripHtml } from '../lib/string';
 import { errorMessages, successMessages } from '../constants/messages';
+import pagination from '../lib/pagination';
 
 /**
  * Transform the endpoint data structure into our redux store format
@@ -15,6 +16,7 @@ const transform = (item) => ({
   id: item.id || 0,
   name: item.title && item.title.rendered ? stripHtml(item.title.rendered) : '',
   content: item.content && item.content.rendered ? stripHtml(item.content.rendered) : '',
+  contentRaw: item.content && item.content.rendered,
   excerpt: item.excerpt && item.excerpt.rendered ? stripHtml(item.excerpt.rendered) : '',
   date: moment(item.date).format(Config.dateFormat) || '',
   slug: item.slug || null,
@@ -56,8 +58,11 @@ export default {
       }
 
       try {
-        const data = await Api.get(`/v2/posts?per_page=4&page=${page}&orderby=modified&_embed`);
-        return !data || data.length < 1 ? true : dispatch.articles.replace({ data, page });
+        const response = await Api.get(`/v2/posts?per_page=4&page=${page}&orderby=modified&_embed`);
+        const { data, headers } = response;
+        return !data || data.length < 1
+          ? true
+          : dispatch.articles.replace({ data, headers, page });
       } catch (error) {
         throw HandleErrorMessage(error);
       }
@@ -70,13 +75,14 @@ export default {
      */
     async fetchSingle(id) {
       try {
-        const item = await Api.get(`/v2/posts/${id}?_embed`);
+        const response = await Api.get(`/v2/posts/${id}?_embed`);
+        const { data } = response;
 
-        if (!item) {
+        if (!data) {
           throw new Error({ message: errorMessages.articles404 });
         }
 
-        return transform(item);
+        return transform(data);
       } catch (error) {
         throw HandleErrorMessage(error);
       }
@@ -112,7 +118,7 @@ export default {
      */
     replace(state, payload) {
       let list = null;
-      const { data, page } = payload;
+      const { data, headers, page } = payload;
 
       // Loop data array, saving items in a usable format
       if (data && typeof data === 'object') {
@@ -122,10 +128,15 @@ export default {
       return list
         ? {
           ...state,
-          list: page === 1 ? list : [...state.list, ...list],
+          list: { ...state.list, [page]: list },
           lastSync:
               page === 1 ? { [page]: moment().format() } : { ...state.lastSync, [page]: moment().format() },
-          page,
+          meta: {
+            page,
+            lastPage: parseInt(headers['x-wp-totalpages'], 10) || null,
+            total: parseInt(headers['x-wp-total'], 10) || null,
+          },
+          pagination: pagination(headers['x-wp-totalpages'], '/articles/'),
         }
         : initialState;
     },

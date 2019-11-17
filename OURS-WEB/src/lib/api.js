@@ -7,7 +7,7 @@ import { hasActiveAuthToken, hasAuthToken, refreshAuthToken } from './jwt';
  * Axios defaults
  */
 axios.defaults.baseURL = Config.apiBaseUrl;
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 
 // Headers
 axios.defaults.headers.common['Content-Type'] = 'application/json';
@@ -54,7 +54,7 @@ axios.interceptors.response.use(
     }
 
     // Otherwise just return the data
-    return res.data;
+    return res;
   },
   (error) => {
     // Pass the response from the API, rather than a status code

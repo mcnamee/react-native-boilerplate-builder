@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
-import Member from '../../containers/Member/Member';
 import Header from '../UI/Header';
 import MobileTabBar from '../UI/MobileTabBar';
 import Footer from '../UI/Footer';
@@ -13,12 +12,12 @@ const Template = ({ pageTitle, children, noPadding }) => (
       <title>{pageTitle}</title>
     </Helmet>
 
-    <Member Layout={Header} />
+    <Header />
     <PageTitle title={pageTitle} />
     <div className={noPadding ? null : 'py-3 py-md-5'}>
       {children}
     </div>
-    <Member Layout={MobileTabBar} />
+    <MobileTabBar />
     <Footer />
   </Fragment>
 );
@@ -30,7 +29,7 @@ Template.propTypes = {
 };
 
 Template.defaultProps = {
-  pageTitle: 'AwesomeProject',
+  pageTitle: 'MattsAwesomeProject',
   noPadding: false,
 };
 

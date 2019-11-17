@@ -1,6 +1,6 @@
 export default {
-  list: [
-    {
+  list: {
+    1: [{
       placeholder: true,
       id: 0,
       name: '---- --- -- ------',
@@ -10,7 +10,8 @@ export default {
       date: '-- / -- / ----',
       slug: '-----',
       link: '----.---.--/------',
-    },
-  ],
+    }],
+  },
+  pagination: [],
   userInput: { email: '' },
 };

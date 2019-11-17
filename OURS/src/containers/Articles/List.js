@@ -15,12 +15,13 @@ class ArticlesListContainer extends Component {
    * Fetch Data
    */
   fetchData = async ({ forceSync = false, page = 1 } = {}) => {
-    const { fetchData } = this.props;
+    const { fetchData, match } = this.props;
+    const { page: fetchPage } = match.params || page;
 
     this.setState({ loading: true, error: null });
 
     try {
-      await fetchData({ forceSync, page });
+      await fetchData({ forceSync, page: fetchPage });
       this.setState({ loading: false, error: null });
     } catch (err) {
       // Only throw error when can't load any (i.e. page=1) results
@@ -32,20 +33,38 @@ class ArticlesListContainer extends Component {
    * Render
    */
   render = () => {
-    const { list } = this.props;
+    const { list, pagination, meta } = this.props;
     const { loading, error } = this.state;
 
-    return <Layout error={error} loading={loading} list={list} reFetch={this.fetchData} />;
+    return (
+      <Layout
+        list={list}
+        meta={meta}
+        error={error}
+        loading={loading}
+        pagination={pagination}
+        reFetch={this.fetchData}
+      />
+    );
   };
 }
 
 ArticlesListContainer.propTypes = {
-  list: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  list: PropTypes.shape().isRequired,
+  pagination: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  meta: PropTypes.shape({}).isRequired,
   fetchData: PropTypes.func.isRequired,
+  match: PropTypes.shape({ params: PropTypes.shape({ id: PropTypes.string }) }),
+};
+
+ArticlesListContainer.defaultProps = {
+  match: { params: { id: null } },
 };
 
 const mapStateToProps = (state) => ({
   list: state.articles.list || {},
+  pagination: state.articles.pagination || {},
+  meta: state.articles.meta || [],
 });
 
 const mapDispatchToProps = (dispatch) => ({

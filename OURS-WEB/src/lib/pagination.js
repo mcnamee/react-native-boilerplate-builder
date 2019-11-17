@@ -1,8 +1,9 @@
-export default (meta, link) => {
+export default (lastPage, link) => {
   const pagination = [];
+  const upTo = parseInt(lastPage, 10);
 
-  if (meta && meta.last_page > 1) {
-    for (let p = 1; p <= parseInt(meta.last_page, 10); p++) {
+  if (upTo > 1) {
+    for (let p = 1; p <= upTo; p++) {
       if (p === 1) {
         pagination.push({ title: p, link });
       } else {

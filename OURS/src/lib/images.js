@@ -9,7 +9,7 @@ export const getFeaturedImageUrl = (item) => (
       && item._embedded['wp:featuredmedia']['0']
       && item._embedded['wp:featuredmedia']['0'].media_details
       && item._embedded['wp:featuredmedia']['0'].media_details.sizes
-      && item._embedded['wp:featuredmedia']['0'].media_details.sizes.medium
-      && item._embedded['wp:featuredmedia']['0'].media_details.sizes.medium.source_url)
+      && item._embedded['wp:featuredmedia']['0'].media_details.sizes.full
+      && item._embedded['wp:featuredmedia']['0'].media_details.sizes.full.source_url)
     || null
 );
