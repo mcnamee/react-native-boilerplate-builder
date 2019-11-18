@@ -61,6 +61,7 @@ export default {
       try {
         const response = await Api.get(`/v2/posts?per_page=4&page=${page}&orderby=modified&_embed`);
         const { data, headers } = response;
+
         return !data || data.length < 1
           ? true
           : dispatch.articles.replace({ data, headers, page });
@@ -129,8 +130,9 @@ export default {
       return list
         ? {
           ...state,
-          list: { ...state.list, [page]: list },
-          lastSync: { ...state.lastSync, [page]: moment().format() },
+          listPaginated: page === 1 ? { [page]: list } : { ...state.listPaginated, [page]: list },
+          listFlat: page === 1 ? list : [...state.listFlat, ...list],
+          lastSync: page === 1 ? { [page]: moment().format() } : { ...state.lastSync, [page]: moment().format() },
           meta: {
             page,
             lastPage: parseInt(headers['x-wp-totalpages'], 10) || null,

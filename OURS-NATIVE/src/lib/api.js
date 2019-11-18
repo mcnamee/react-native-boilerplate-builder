@@ -47,7 +47,7 @@ axios.interceptors.response.use(
     }
 
     // Otherwise just return the data
-    return res.data;
+    return res;
   },
   (error) => {
     // Pass the response from the API, rather than a status code

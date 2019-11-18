@@ -11,7 +11,7 @@ export default {
   dateFormat: 'Do MMM YYYY',
 
   // API
-  apiBaseUrl: (env === 'production')
+  apiBaseUrl: isDevEnv
     ? 'https://www.digitalsupply.co/wp-json/wp'
     : 'https://www.digitalsupply.co/wp-json/wp',
 

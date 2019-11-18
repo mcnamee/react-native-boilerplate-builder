@@ -31,11 +31,14 @@ class ArticlesListContainer extends Component {
   /**
    * Fetch Data
    */
-  fetchData = async ({ forceSync = false } = {}) => {
+  fetchData = async ({ forceSync = false, incrementPage = false } = {}) => {
     const { fetchData } = this.props;
-    const { page } = this.state;
+    let { page } = this.state;
 
-    this.setState({ loading: true, error: null, page: forceSync ? 1 : page });
+    page = incrementPage ? page + 1 : page; // Force fetch the next page worth of data
+    page = forceSync ? 1 : page; // Start from scratch
+
+    this.setState({ loading: true, error: null, page });
 
     try {
       await fetchData({ forceSync, page });
@@ -49,12 +52,12 @@ class ArticlesListContainer extends Component {
    * Render
    */
   render = () => {
-    const { list, pagination, meta } = this.props;
+    const { listFlat, pagination, meta } = this.props;
     const { loading, error, page } = this.state;
 
     return (
       <Layout
-        list={list}
+        list={listFlat}
         page={page}
         meta={meta}
         error={error}
@@ -67,7 +70,7 @@ class ArticlesListContainer extends Component {
 }
 
 ArticlesListContainer.propTypes = {
-  list: PropTypes.shape().isRequired,
+  listFlat: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   meta: PropTypes.shape({}).isRequired,
   fetchData: PropTypes.func.isRequired,
   pagination: PropTypes.arrayOf(PropTypes.shape()).isRequired,
@@ -79,7 +82,7 @@ ArticlesListContainer.defaultProps = {
 };
 
 const mapStateToProps = (state) => ({
-  list: state.articles.list || {},
+  listFlat: state.articles.listFlat || {},
   meta: state.articles.meta || [],
   pagination: state.articles.pagination || {},
 });

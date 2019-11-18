@@ -14,12 +14,12 @@ const ArticlesSingle = ({
     return <Error content={error} tryAgain={reFetch} />;
   }
 
-  if (Object.keys(article).length < 1) {
-    return <Error content={errorMessages.articles404} />;
-  }
-
   if (loading) {
     return <Loading content={loading} />;
+  }
+
+  if (Object.keys(article).length < 1) {
+    return <Error content={errorMessages.articles404} />;
   }
 
   return (

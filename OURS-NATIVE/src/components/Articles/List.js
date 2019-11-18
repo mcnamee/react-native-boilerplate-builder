@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Actions } from 'react-native-router-flux';
 import { FlatList, TouchableOpacity, Image } from 'react-native';
@@ -9,10 +9,8 @@ import { Error, Spacer } from '../UI';
 import { errorMessages } from '../../constants/messages';
 
 const ArticlesList = ({
-  error, loading, list, reFetch,
+  error, loading, list, reFetch, meta,
 }) => {
-  const [page, setPage] = useState(2); // The first 'load more' press shall be page 2
-
   if (error) {
     return <Error content={error} tryAgain={reFetch} />;
   }
@@ -25,10 +23,7 @@ const ArticlesList = ({
     <Container style={{ padding: 10 }}>
       <FlatList
         data={list}
-        onRefresh={() => {
-          setPage(2);
-          reFetch({ page: 1, forceSync: true });
-        }}
+        onRefresh={() => reFetch({ forceSync: true })}
         refreshing={loading}
         renderItem={({ item }) => (
           <Card style={{ opacity: item.placeholder ? 0.3 : 1 }}>
@@ -70,20 +65,19 @@ const ArticlesList = ({
           </Card>
         )}
         keyExtractor={(item) => `${item.id}-${item.name}`}
-        ListFooterComponent={() => (
-          <React.Fragment>
-            <Spacer size={20} />
-            <Button
-              block
-              bordered
-              onPress={() => {
-                reFetch({ page }).then(() => setPage(page + 1));
-              }}
-            >
-              <Text>Load More</Text>
-            </Button>
-          </React.Fragment>
-        )}
+        ListFooterComponent={(meta && meta.page && meta.lastPage && meta.page < meta.lastPage)
+          ? () => (
+            <React.Fragment>
+              <Spacer size={20} />
+              <Button
+                block
+                bordered
+                onPress={() => reFetch({ incrementPage: true })}
+              >
+                <Text>Load More</Text>
+              </Button>
+            </React.Fragment>
+          ) : null}
       />
 
       <Spacer size={20} />
@@ -104,14 +98,17 @@ ArticlesList.propTypes = {
       excerpt: PropTypes.string,
       image: PropTypes.string,
     }),
-  ).isRequired,
+  ),
   reFetch: PropTypes.func,
+  meta: PropTypes.shape({ page: PropTypes.number, lastPage: PropTypes.number }),
 };
 
 ArticlesList.defaultProps = {
+  list: [],
   error: null,
-  loading: false,
   reFetch: null,
+  meta: { page: null, lastPage: null },
+  loading: false,
 };
 
 export default ArticlesList;
