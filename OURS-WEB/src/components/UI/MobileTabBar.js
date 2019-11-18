@@ -19,13 +19,19 @@ const MobileTabBar = () => (
         </Link>
       </NavItem>
       <NavItem>
-        <Link className={`nav-link ${window.location.pathname.startsWith('/article') ? 'active' : ''}`} to="/articles/">
+        <Link
+          className={`nav-link ${window.location.pathname.startsWith('/article') ? 'active' : ''}`}
+          to="/articles/"
+        >
           <FontAwesomeIcon icon={faPalette} />
           <span>Articles</span>
         </Link>
       </NavItem>
       <NavItem>
-        <Link className={`nav-link ${window.location.pathname.startsWith('/example-form') ? 'active' : ''}`} to="/example-form/">
+        <Link
+          className={`nav-link ${window.location.pathname.startsWith('/example-form') ? 'active' : ''}`}
+          to="/example-form/"
+        >
           <FontAwesomeIcon icon={faMoneyBillWave} />
           <span>Form</span>
         </Link>
