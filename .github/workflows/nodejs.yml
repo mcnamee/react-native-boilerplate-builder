@@ -1,4 +1,4 @@
-name: Node CI
+name: Build + Test
 
 on: [push]
 
@@ -17,12 +17,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: build
+    - name: Build a fresh React App
       run: |
         bash build.sh --name=AwesomeProject --type=1
-    - name: npm install, build, and test
+    - name: Jest Tests
       run: |
-        npm ci
-        npm test
+        yarn test
       env:
         CI: true
