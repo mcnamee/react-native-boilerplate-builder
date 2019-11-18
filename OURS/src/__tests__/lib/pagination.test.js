@@ -1,7 +1,7 @@
 import pagination from '../../lib/pagination';
 
 it('lib/pagination: pagination returns correctly', () => {
-  const threePages = pagination({ last_page: 3 }, '/articles/');
+  const threePages = pagination(3, '/articles/');
   expect(threePages).toEqual([
     { title: 1, link: '/articles/' },
     { title: 2, link: '/articles/2' },
