@@ -20,6 +20,9 @@ jobs:
     - name: Build a fresh React App
       run: |
         bash build.sh --name=AwesomeProject --type=1
+    - name: Lint
+      run: |
+        ./node_modules/.bin/eslint "src/**/*.js"
     - name: Jest Tests
       run: |
         yarn test
