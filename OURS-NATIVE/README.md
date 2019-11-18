@@ -4,7 +4,7 @@
 
 ## 👋 Intro
 
-This project was bootstrapped with [React Native](https://facebook.github.io/react-native/).
+This project was bootstrapped with the [React Boilerplate Builder](https://github.com/mcnamee/react-native-boilerplate-builder) by [Matt McNamee](https://mcnam.ee).
 
 The project is _super_ helpful to kick-start your next project, as it provides a lot of the common tools you may reach for, all ready to go. Specifically:
 
