@@ -9,20 +9,20 @@ import { Error, Spacer } from '../UI';
 import { errorMessages } from '../../constants/messages';
 
 const ArticlesList = ({
-  error, loading, list, reFetch, meta,
+  error, loading, listFlat, reFetch, meta,
 }) => {
   if (error) {
     return <Error content={error} tryAgain={reFetch} />;
   }
 
-  if (list.length < 1) {
+  if (listFlat.length < 1) {
     return <Error content={errorMessages.articlesEmpty} />;
   }
 
   return (
     <Container style={{ padding: 10 }}>
       <FlatList
-        data={list}
+        data={listFlat}
         onRefresh={() => reFetch({ forceSync: true })}
         refreshing={loading}
         renderItem={({ item }) => (
@@ -88,7 +88,7 @@ const ArticlesList = ({
 ArticlesList.propTypes = {
   error: PropTypes.string,
   loading: PropTypes.bool,
-  list: PropTypes.arrayOf(
+  listFlat: PropTypes.arrayOf(
     PropTypes.shape({
       placeholder: PropTypes.bool,
       id: PropTypes.number,
@@ -104,7 +104,7 @@ ArticlesList.propTypes = {
 };
 
 ArticlesList.defaultProps = {
-  list: [],
+  listFlat: [],
   error: null,
   reFetch: null,
   meta: { page: null, lastPage: null },

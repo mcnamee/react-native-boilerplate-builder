@@ -14,7 +14,7 @@ import Template from '../Templates/Dashboard';
 import TablePagination from '../UI/TablePagination';
 
 const List = ({
-  error, loading, list, page, pagination, meta, history,
+  error, loading, listPaginated, page, pagination, meta, history,
 }) => (
   <Template pageTitle="Articles">
     <React.Fragment>
@@ -24,18 +24,18 @@ const List = ({
             <Card>
               <CardBody>
                 {!!error && <Alert color="danger">{error}</Alert>}
-                {(!!loading && (!list[page] || list[page].length === 0)) && (
+                {(!!loading && (!listPaginated[page] || listPaginated[page].length === 0)) && (
                   <Alert color="warning">Loading...</Alert>
                 )}
 
                 <TablePagination
                   pagination={pagination}
-                  length={(list[page] && list[page].length) || 0}
+                  length={(listPaginated[page] && listPaginated[page].length) || 0}
                   total={meta.total}
                   loading={loading}
                 />
 
-                {(list[page] && list[page].length > 0) && (
+                {(listPaginated[page] && listPaginated[page].length > 0) && (
                   <Table hover className="mobile-list-table">
                     <thead className="bg-gray-200">
                       <tr>
@@ -45,7 +45,7 @@ const List = ({
                       </tr>
                     </thead>
                     <tbody>
-                      {list[page].map((article) => (
+                      {listPaginated[page].map((article) => (
                         <tr key={article.id}>
                           { /* eslint-disable-next-line */ }
                           <td
@@ -73,13 +73,13 @@ const List = ({
 
                 <TablePagination
                   pagination={pagination}
-                  length={(list[page] && list[page].length) || 0}
+                  length={(listPaginated[page] && listPaginated[page].length) || 0}
                   total={meta.total}
                   loading={loading}
                 />
 
                 <div className="text-center">
-                  {(!loading && (!list[page] || list[page].length === 0)) && (
+                  {(!loading && (!listPaginated[page] || listPaginated[page].length === 0)) && (
                     <p>No Articles found</p>
                   )}
                 </div>
@@ -95,7 +95,7 @@ const List = ({
 List.propTypes = {
   error: PropTypes.string,
   loading: PropTypes.bool,
-  list: PropTypes.shape({}),
+  listPaginated: PropTypes.shape({}),
   pagination: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     link: PropTypes.string.isRequired,
@@ -109,7 +109,7 @@ List.propTypes = {
 
 List.defaultProps = {
   error: null,
-  list: {},
+  listPaginated: {},
   loading: false,
   pagination: [],
   meta: { total: 0 },

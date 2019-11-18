@@ -130,9 +130,15 @@ export default {
       return list
         ? {
           ...state,
-          listPaginated: page === 1 ? { [page]: list } : { ...state.listPaginated, [page]: list },
-          listFlat: page === 1 ? list : [...state.listFlat, ...list],
-          lastSync: page === 1 ? { [page]: moment().format() } : { ...state.lastSync, [page]: moment().format() },
+          listPaginated: page === 1
+            ? { [page]: list }
+            : { ...state.listPaginated, [page]: list },
+          listFlat: page === 1
+            ? list
+            : [...state.listFlat, ...list],
+          lastSync: page === 1
+            ? { [page]: moment().format() }
+            : { ...state.lastSync, [page]: moment().format() },
           meta: {
             page,
             lastPage: parseInt(headers['x-wp-totalpages'], 10) || null,
