@@ -36,7 +36,7 @@ Array [
             fill="#fff"
           />
         </svg>
-        MattsAwesomeProject
+        AwesomeProject
       </a>
       <button
         aria-label="Toggle navigation"
@@ -281,7 +281,7 @@ Array [
           <p
             className="text-center text-secondary"
           >
-            © MattsMattsAwesomeProject. All Rights Reserved.
+            © AwesomeProject. All Rights Reserved.
           </p>
         </div>
       </div>
