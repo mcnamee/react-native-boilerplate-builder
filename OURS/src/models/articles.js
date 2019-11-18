@@ -4,7 +4,7 @@ import HandleErrorMessage from '../lib/format-error-messages';
 import initialState from '../store/articles';
 import Config from '../constants/config';
 import { getFeaturedImageUrl } from '../lib/images';
-import { stripHtml } from '../lib/string';
+import { ucfirst, stripHtml } from '../lib/string';
 import { errorMessages, successMessages } from '../constants/messages';
 import pagination from '../lib/pagination';
 
@@ -14,7 +14,7 @@ import pagination from '../lib/pagination';
  */
 const transform = (item) => ({
   id: item.id || 0,
-  name: item.title && item.title.rendered ? stripHtml(item.title.rendered) : '',
+  name: item.title && item.title.rendered ? ucfirst(stripHtml(item.title.rendered)) : '',
   content: item.content && item.content.rendered ? stripHtml(item.content.rendered) : '',
   contentRaw: item.content && item.content.rendered,
   excerpt: item.excerpt && item.excerpt.rendered ? stripHtml(item.excerpt.rendered) : '',
