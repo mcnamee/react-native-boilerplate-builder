@@ -16,11 +16,11 @@ exports[`<ArticlesList /> shows a list of articles correctly 1`] = `
   }
 >
   <ScrollView
-    ListFooterComponent={[Function]}
+    ListFooterComponent={null}
     data={
       Array [
         Object {
-          "content": "DEF",
+          "contentRaw": "DEF",
           "date": "22/33/44",
           "excerpt": "DEF",
           "id": 0,
@@ -213,69 +213,6 @@ exports[`<ArticlesList /> shows a list of articles correctly 1`] = `
           </View>
         </TouchableOpacity>
       </View>
-    </View>
-    <View
-      onLayout={[Function]}
-    >
-      <View
-        style={
-          Array [
-            Object {},
-            Object {
-              "flex": 1,
-              "height": 20,
-            },
-          ]
-        }
-      />
-      <TouchableOpacity
-        activeOpacity={0.5}
-        block={true}
-        bordered={true}
-        onPress={[Function]}
-        style={
-          Object {
-            "alignItems": "center",
-            "alignSelf": "stretch",
-            "backgroundColor": "transparent",
-            "borderBottomWidth": 1,
-            "borderColor": "#007aff",
-            "borderLeftWidth": 1,
-            "borderRadius": 5,
-            "borderRightWidth": 1,
-            "borderTopWidth": 1,
-            "borderWidth": 1,
-            "elevation": null,
-            "flexDirection": "row",
-            "height": 45,
-            "justifyContent": "center",
-            "paddingBottom": 6,
-            "paddingTop": 6,
-            "shadowColor": null,
-            "shadowOffset": null,
-            "shadowOpacity": null,
-            "shadowRadius": null,
-          }
-        }
-      >
-        <Text
-          style={
-            Object {
-              "backgroundColor": "transparent",
-              "color": "#007aff",
-              "fontFamily": "System",
-              "fontSize": 16.5,
-              "marginLeft": 0,
-              "marginRight": 0,
-              "paddingLeft": 16,
-              "paddingRight": 16,
-            }
-          }
-          uppercase={false}
-        >
-          Load More
-        </Text>
-      </TouchableOpacity>
     </View>
   </ScrollView>
   <View

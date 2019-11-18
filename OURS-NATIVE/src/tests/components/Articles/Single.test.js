@@ -1,8 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { render } from '@testing-library/react-native';
-import ArticlesSingle from '../../../src/components/Articles/Single';
-import { errorMessages } from '../../../src/constants/messages';
+import ArticlesSingle from '../../../components/Articles/Single';
+import { errorMessages } from '../../../constants/messages';
 
 it('<ArticlesSingle /> shows a nice error message', () => {
   const Component = <ArticlesSingle article={{}} />;

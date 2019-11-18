@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { render } from '@testing-library/react-native';
-import Error from '../../../src/components/UI/Error';
+import Error from '../../../components/UI/Error';
 
 it('<Error /> renders with message', () => {
   const Component = <Error title="hello boy" />;

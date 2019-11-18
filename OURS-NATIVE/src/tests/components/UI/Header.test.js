@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { render } from '@testing-library/react-native';
-import Header from '../../../src/components/UI/Header';
+import Header from '../../../components/UI/Header';
 
 it('<Header /> renders with message', () => {
   const Component = <Header title="hello boy" content="I'm here" />;

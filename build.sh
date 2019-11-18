@@ -128,7 +128,7 @@ if [[ "REACT NATIVE" == $APP_TYPE ]]; then
   LC_ALL=C find . -type f -exec sed -i '' 's/org.reactjs.native.example/com/g' {} +
 
   # Jest Test Config
-  LC_ALL=C sed -i '' 's~"preset": "react-native"~"preset": "@testing-library/react-native", "transformIgnorePatterns": ["node_modules/(?!((jest-)?react-native|react-clone-referenced-element?/.*|react-navigation|redux-persist|native-base(-shoutem-theme)|native-base|react-native-router-flux))"]~g' package.json
+  LC_ALL=C sed -i '' 's~"preset": "react-native"~"preset": "@testing-library/react-native", "transformIgnorePatterns": ["node_modules/(?!((jest-)?react-native|react-clone-referenced-element?/.*|react-navigation|redux-persist|native-base(-shoutem-theme)|native-base|react-native-router-flux|@react-native-community/async-storage))"]~g' package.json
 
 fi
 
