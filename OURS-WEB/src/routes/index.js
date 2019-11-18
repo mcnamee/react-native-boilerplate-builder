@@ -7,6 +7,7 @@ import CustomRoute from './Route';
 import {
   ArticlesList,
   ArticlesSingle,
+  ArticlesForm,
 } from '../containers';
 
 // Components
@@ -23,6 +24,7 @@ const Index = () => (
     {/* Articles */}
     <CustomRoute path="/articles/:page?" component={ArticlesList} />
     <CustomRoute path="/article/:id" component={ArticlesSingle} />
+    <CustomRoute path="/example-form" component={ArticlesForm} />
 
     {/* 404 */}
     <Route
