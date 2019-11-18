@@ -4,28 +4,44 @@ import { connect } from 'react-redux';
 import Layout from '../../components/Articles/List';
 
 class ArticlesListContainer extends Component {
-  constructor() {
+  constructor(props) {
     super();
-    this.state = { error: null, loading: false };
+    this.state = {
+      error: null, loading: false, page: parseInt(props.page, 10) || 1,
+    };
   }
 
   componentDidMount = () => this.fetchData();
 
   /**
+   * If the page prop changes, update state
+  */
+  componentDidUpdate = (prevProps) => {
+    const { page } = this.props;
+    const { page: prevPage } = prevProps;
+
+    if (page !== prevPage) {
+      // eslint-disable-next-line
+      this.setState({
+        error: null, loading: false, page: parseInt(page, 10) || 1,
+      }, this.fetchData);
+    }
+  }
+
+  /**
    * Fetch Data
    */
-  fetchData = async ({ forceSync = false, page = 1 } = {}) => {
-    const { fetchData, match } = this.props;
-    const { page: fetchPage } = match.params || page;
+  fetchData = async ({ forceSync = false } = {}) => {
+    const { fetchData } = this.props;
+    const { page } = this.state;
 
-    this.setState({ loading: true, error: null });
+    this.setState({ loading: true, error: null, page: forceSync ? 1 : page });
 
     try {
-      await fetchData({ forceSync, page: fetchPage });
+      await fetchData({ forceSync, page });
       this.setState({ loading: false, error: null });
     } catch (err) {
-      // Only throw error when can't load any (i.e. page=1) results
-      this.setState({ loading: false, error: page === 1 ? err.message : null });
+      this.setState({ loading: false, error: err.message });
     }
   };
 
@@ -34,11 +50,12 @@ class ArticlesListContainer extends Component {
    */
   render = () => {
     const { list, pagination, meta } = this.props;
-    const { loading, error } = this.state;
+    const { loading, error, page } = this.state;
 
     return (
       <Layout
         list={list}
+        page={page}
         meta={meta}
         error={error}
         loading={loading}
@@ -51,20 +68,20 @@ class ArticlesListContainer extends Component {
 
 ArticlesListContainer.propTypes = {
   list: PropTypes.shape().isRequired,
-  pagination: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   meta: PropTypes.shape({}).isRequired,
   fetchData: PropTypes.func.isRequired,
-  match: PropTypes.shape({ params: PropTypes.shape({ id: PropTypes.string }) }),
+  pagination: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  page: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 ArticlesListContainer.defaultProps = {
-  match: { params: { id: null } },
+  page: 1,
 };
 
 const mapStateToProps = (state) => ({
   list: state.articles.list || {},
-  pagination: state.articles.pagination || {},
   meta: state.articles.meta || [],
+  pagination: state.articles.pagination || {},
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -15,9 +15,7 @@ class ArticlesSingleContainer extends Component {
    * Fetch Data
    */
   fetchData = async () => {
-    const { fetchData, match } = this.props;
-    let { id } = this.props;
-    id = (match && match.params && match.params.id) ? match.params.id : id;
+    const { fetchData, id } = this.props;
 
     this.setState({ loading: true, error: null });
 
@@ -40,14 +38,12 @@ class ArticlesSingleContainer extends Component {
 }
 
 ArticlesSingleContainer.propTypes = {
-  id: PropTypes.number,
   fetchData: PropTypes.func.isRequired,
-  match: PropTypes.shape({ params: PropTypes.shape({ id: PropTypes.string }) }),
+  id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 ArticlesSingleContainer.defaultProps = {
   id: null,
-  match: { params: { id: null } },
 };
 
 const mapStateToProps = () => ({});

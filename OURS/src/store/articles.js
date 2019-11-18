@@ -12,6 +12,12 @@ export default {
       link: '----.---.--/------',
     }],
   },
+  meta: {
+    page: null,
+    lastPage: null,
+    total: null,
+  },
+  lastSync: {},
   pagination: [],
   userInput: { email: '' },
 };

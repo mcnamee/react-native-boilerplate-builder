@@ -43,7 +43,8 @@ export default {
      */
     async fetchList({ forceSync = false, page = 1 } = {}, rootState) {
       const { articles = {} } = rootState;
-      const { lastSync = {}, page: rootStatePage } = articles;
+      const { lastSync = {}, meta = {} } = articles;
+      const { lastPage } = meta;
 
       // Only sync when it's been 5mins since last sync
       if (lastSync[page]) {
@@ -53,8 +54,8 @@ export default {
       }
 
       // We've reached the end of the list
-      if (page - rootStatePage >= 2) {
-        return true;
+      if (page && lastPage && page > lastPage) {
+        throw HandleErrorMessage({ message: `Page ${page} does not exist` });
       }
 
       try {
@@ -129,8 +130,7 @@ export default {
         ? {
           ...state,
           list: { ...state.list, [page]: list },
-          lastSync:
-              page === 1 ? { [page]: moment().format() } : { ...state.lastSync, [page]: moment().format() },
+          lastSync: { ...state.lastSync, [page]: moment().format() },
           meta: {
             page,
             lastPage: parseInt(headers['x-wp-totalpages'], 10) || null,

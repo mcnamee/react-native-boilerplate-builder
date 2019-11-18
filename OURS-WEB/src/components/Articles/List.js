@@ -14,7 +14,7 @@ import Template from '../Templates/Dashboard';
 import TablePagination from '../UI/TablePagination';
 
 const List = ({
-  error, loading, list, pagination, meta, history,
+  error, loading, list, page, pagination, meta, history,
 }) => (
   <Template pageTitle="Articles">
     <React.Fragment>
@@ -24,18 +24,18 @@ const List = ({
             <Card>
               <CardBody>
                 {!!error && <Alert color="danger">{error}</Alert>}
-                {(!!loading && (!list || list.length === 0)) && (
+                {(!!loading && (!list[page] || list[page].length === 0)) && (
                   <Alert color="warning">Loading...</Alert>
                 )}
 
                 <TablePagination
                   pagination={pagination}
-                  length={list.length}
+                  length={(list[page] && list[page].length) || 0}
                   total={meta.total}
                   loading={loading}
                 />
 
-                {(list && list.length > 0) && (
+                {(list[page] && list[page].length > 0) && (
                   <Table hover className="mobile-list-table">
                     <thead className="bg-gray-200">
                       <tr>
@@ -45,7 +45,7 @@ const List = ({
                       </tr>
                     </thead>
                     <tbody>
-                      {list.map((article) => (
+                      {list[page].map((article) => (
                         <tr key={article.id}>
                           { /* eslint-disable-next-line */ }
                           <td
@@ -73,13 +73,13 @@ const List = ({
 
                 <TablePagination
                   pagination={pagination}
-                  length={list.length}
+                  length={(list[page] && list[page].length) || 0}
                   total={meta.total}
                   loading={loading}
                 />
 
                 <div className="text-center">
-                  {(!loading && (!list || list.length === 0)) && (
+                  {(!loading && (!list[page] || list[page].length === 0)) && (
                     <p>No Articles found</p>
                   )}
                 </div>
@@ -95,21 +95,12 @@ const List = ({
 List.propTypes = {
   error: PropTypes.string,
   loading: PropTypes.bool,
-  list: PropTypes.arrayOf(
-    PropTypes.shape({
-      placeholder: PropTypes.bool,
-      id: PropTypes.number,
-      name: PropTypes.string,
-      date: PropTypes.string,
-      content: PropTypes.string,
-      excerpt: PropTypes.string,
-      image: PropTypes.string,
-    }),
-  ).isRequired,
+  list: PropTypes.shape({}),
   pagination: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     link: PropTypes.string.isRequired,
   })),
+  page: PropTypes.number.isRequired,
   meta: PropTypes.shape({ total: PropTypes.number }),
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
@@ -118,6 +109,7 @@ List.propTypes = {
 
 List.defaultProps = {
   error: null,
+  list: {},
   loading: false,
   pagination: [],
   meta: { total: 0 },

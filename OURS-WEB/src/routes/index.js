@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import CustomRoute from './Route';
 // import PrivateRoute from './PrivateRoute';
 
 // Containers
@@ -12,13 +13,16 @@ import {
 import About from '../components/About';
 import Error from '../components/UI/Error';
 
+/**
+ * All of the routes
+ */
 const Index = () => (
   <Switch>
     <Route path="/" exact component={About} />
 
     {/* Articles */}
-    <Route path="/articles/:page?" component={ArticlesList} />
-    <Route path="/article/:id" component={ArticlesSingle} />
+    <CustomRoute path="/articles/:page?" component={ArticlesList} />
+    <CustomRoute path="/article/:id" component={ArticlesSingle} />
 
     {/* 404 */}
     <Route
