@@ -17,7 +17,7 @@ const Template = ({ pageTitle, children }) => (
         <Row>
           <Col sm="12">
             <Link to="/">
-              <img src={Logo} alt="MattsAwesomeProject" className="d-block mx-auto" style={{ maxWidth: '260px' }} />
+              <img src={Logo} alt="AwesomeProject" className="d-block mx-auto" style={{ maxWidth: '260px' }} />
             </Link>
           </Col>
         </Row>
@@ -37,7 +37,7 @@ Template.propTypes = {
 };
 
 Template.defaultProps = {
-  pageTitle: 'MattsAwesomeProject',
+  pageTitle: 'AwesomeProject',
 };
 
 export default withRouter(Template);

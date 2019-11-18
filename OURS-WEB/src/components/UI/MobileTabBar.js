@@ -7,7 +7,7 @@ import {
 } from 'reactstrap';
 import { Link, withRouter } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTachometerAlt, faPalette } from '@fortawesome/free-solid-svg-icons';
+import { faTachometerAlt, faPalette, faMoneyBillWave } from '@fortawesome/free-solid-svg-icons';
 
 const MobileTabBar = () => (
   <div className="mobile-tab-bar d-md-none">
@@ -19,9 +19,15 @@ const MobileTabBar = () => (
         </Link>
       </NavItem>
       <NavItem>
-        <Link className={`nav-link ${window.location.pathname.startsWith('/articles') ? 'active' : ''}`} to="/articles/">
+        <Link className={`nav-link ${window.location.pathname.startsWith('/article') ? 'active' : ''}`} to="/articles/">
           <FontAwesomeIcon icon={faPalette} />
           <span>Articles</span>
+        </Link>
+      </NavItem>
+      <NavItem>
+        <Link className={`nav-link ${window.location.pathname.startsWith('/example-form') ? 'active' : ''}`} to="/example-form/">
+          <FontAwesomeIcon icon={faMoneyBillWave} />
+          <span>Form</span>
         </Link>
       </NavItem>
     </Nav>

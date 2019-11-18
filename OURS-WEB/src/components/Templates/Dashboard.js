@@ -29,7 +29,7 @@ Template.propTypes = {
 };
 
 Template.defaultProps = {
-  pageTitle: 'MattsAwesomeProject',
+  pageTitle: 'AwesomeProject',
   noPadding: false,
 };
 

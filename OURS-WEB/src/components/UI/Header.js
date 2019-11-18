@@ -35,8 +35,13 @@ const Header = () => {
               </Link>
             </NavItem>
             <NavItem>
-              <Link className={`nav-link ${window.location.pathname.startsWith('/article') && 'active'}`} to="/articles">
+              <Link className={`nav-link ${window.location.pathname.startsWith('/article') && 'active'}`} to="/articles/">
                 <span>Articles</span>
+              </Link>
+            </NavItem>
+            <NavItem>
+              <Link className={`nav-link ${window.location.pathname.startsWith('/example-form') && 'active'}`} to="/example-form/">
+                <span>Form</span>
               </Link>
             </NavItem>
           </Nav>
