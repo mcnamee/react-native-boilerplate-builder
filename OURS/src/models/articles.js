@@ -119,12 +119,12 @@ export default {
      * @param {obj} payload
      */
     replace(state, payload) {
-      let list = null;
+      let newList = null;
       const { data, headers, page } = payload;
 
       // Loop data array, saving items in a usable format
       if (data && typeof data === 'object') {
-        list = data.map((item) => transform(item));
+        newList = data.map((item) => transform(item));
       }
 
       // Create our paginated and flat lists

@@ -6,8 +6,12 @@ import Layout from '../../components/Articles/List';
 class ArticlesListContainer extends Component {
   constructor(props) {
     super();
+
+    // Prioritize (web) page route over last meta value
+    const page = props.page || props.meta.page;
+
     this.state = {
-      error: null, loading: false, page: parseInt(props.page, 10) || 1,
+      error: null, loading: false, page: parseInt(page, 10) || 1,
     };
   }
 
