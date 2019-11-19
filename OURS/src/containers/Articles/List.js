@@ -79,7 +79,9 @@ class ArticlesListContainer extends Component {
 ArticlesListContainer.propTypes = {
   listFlat: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   listPaginated: PropTypes.shape({}).isRequired,
-  meta: PropTypes.shape({}).isRequired,
+  meta: PropTypes.shape({
+    page: PropTypes.number,
+  }).isRequired,
   fetchData: PropTypes.func.isRequired,
   pagination: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   page: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
