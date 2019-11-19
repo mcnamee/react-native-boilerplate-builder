@@ -127,15 +127,15 @@ export default {
         list = data.map((item) => transform(item));
       }
 
-      return list
+      // Create our paginated and flat lists
+      const listPaginated = page === 1 ? { [page]: newList } : { ...state.listPaginated, [page]: newList };
+      const listFlat = Object.keys(listPaginated).map((k) => listPaginated[k]).flat() || [];
+
+      return newList
         ? {
           ...state,
-          listPaginated: page === 1
-            ? { [page]: list }
-            : { ...state.listPaginated, [page]: list },
-          listFlat: page === 1
-            ? list
-            : [...state.listFlat, ...list],
+          listPaginated,
+          listFlat,
           lastSync: page === 1
             ? { [page]: moment().format() }
             : { ...state.lastSync, [page]: moment().format() },
