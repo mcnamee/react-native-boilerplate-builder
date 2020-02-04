@@ -25,17 +25,17 @@ done
 
 # App Name
 if [[ -z "$APP_NAME" ]]; then
-  echo -e "\n  ➤  What would you like the new App to be called? [eg. AwesomeProject]"
-  read -p " == " APP_NAME
+  echo -e "\n  ➤  What would you like the new App to be called? [eg. AwesomeProject] \n"
+  read -p " ==   " APP_NAME
 fi
 
 # App Type
 if [[ -z "$APP_TYPE" ]]; then
   echo -e "\n  ➤  What type of app are you wanting to build? (enter the number)"
-  echo -e "\n  1. React"
-  echo -e "\n  2. React Native"
-  echo -e "\n  3. Expo (both web and native) \n"
-  read -p " == " APP_TYPE
+  echo -e "\n     1. React"
+  echo -e "\n     2. React Native"
+  echo -e "\n     3. Expo (both web and native) \n"
+  read -p " ==   " APP_TYPE
 fi
 
 # Validate our Config
@@ -60,8 +60,8 @@ else
 fi
 
 echo -e "\n -----------------------------------------------------------"
-echo -e " Building you a ${APP_TYPE} app called ${APP_NAME}"
-echo -e "\n -----------------------------------------------------------"
+echo -e " Building you a *${APP_TYPE}* app called *${APP_NAME}*"
+echo -e " -----------------------------------------------------------"
 
 # All
 # ---------------------------------------------
@@ -160,10 +160,10 @@ if [[ "EXPO" == $APP_TYPE ]]; then
   rsync -r --inplace --links --exclude '__tests__' ./$APP_NAME/. ./ && rm -rf $APP_NAME
 
   # Install extra dependencies
-  yarn add @react-native-community/async-storage @rematch/core @rematch/loading @rematch/persist axios jsonwebtoken moment native-base prop-types react-native-router-flux @expo/vector-icons react-redux redux-persist react-hook-form
+  yarn add @react-native-community/async-storage @rematch/core @rematch/loading @rematch/persist axios jsonwebtoken moment native-base prop-types react-native-router-flux react-native-gesture-handler react-native-reanimated react-native-screens expo-font @expo/vector-icons react-redux redux-persist react-hook-form
 
   # Install (and remove) Dev dependencies
-  yarn add babel-eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jest eslint-plugin-jsx-a11y eslint-plugin-react @testing-library/react-native --dev && yarn remove @react-native-community/eslint-config
+  yarn add jest eslint babel-eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jest eslint-plugin-jsx-a11y eslint-plugin-react @testing-library/react-native react-test-renderer jest-expo --dev && yarn remove @react-native-community/eslint-config
 
   # Eject Native Base
   node node_modules/native-base/ejectTheme.js
@@ -184,7 +184,9 @@ if [[ "EXPO" == $APP_TYPE ]]; then
   LC_ALL=C find . -type f -exec sed -i '' 's/org.reactjs.native.example/com/g' {} +
 
   # Jest Test Config
-  LC_ALL=C sed -i '' 's~"preset": "react-native"~"preset": "@testing-library/react-native", "transformIgnorePatterns": ["node_modules/(?!((jest-)?react-native|react-clone-referenced-element?/.*|react-navigation|redux-persist|native-base(-shoutem-theme)|native-base|react-native-router-flux|@react-native-community/async-storage))"]~g' package.json
+  # LC_ALL=C sed -i '' 's~"private": true~"private": true,"preset": "@testing-library/react-native", "transformIgnorePatterns": ["node_modules/(?!((jest-)?react-native|react-clone-referenced-element?/.*|react-navigation|redux-persist|native-base(-shoutem-theme)|native-base|react-native-router-flux|@react-native-community/async-storage))"]~g' package.json
+  LC_ALL=C sed -i '' 's~"private": true~"private": true,  "jest": { "preset": "@testing-library/react-native", "transformIgnorePatterns": [ "node_modules/(?!(jest-)?react-native|@expo/vector-icons|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base)" ] }~g' package.json
+  LC_ALL=C sed -i '' 's~"scripts": {~"scripts": {  "test": "jest",~g' package.json
 
 fi
 
