@@ -36,7 +36,7 @@ Array [
             fill="#fff"
           />
         </svg>
-        AwesomeProject
+        MattsSickWeb
       </a>
       <button
         aria-label="Toggle navigation"
@@ -49,7 +49,6 @@ Array [
         />
       </button>
       <div
-        aria-expanded="false"
         className="collapse navbar-collapse"
         style={Object {}}
       >
@@ -278,7 +277,7 @@ Array [
           <p
             className="text-center text-secondary"
           >
-            © AwesomeProject. All Rights Reserved.
+            © MattsSickWeb. All Rights Reserved.
           </p>
         </div>
       </div>

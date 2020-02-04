@@ -36,7 +36,7 @@ Array [
             fill="#fff"
           />
         </svg>
-        AwesomeProject
+        MattsSickWeb
       </a>
       <button
         aria-label="Toggle navigation"
@@ -49,7 +49,6 @@ Array [
         />
       </button>
       <div
-        aria-expanded="false"
         className="collapse navbar-collapse"
         style={Object {}}
       >
@@ -281,7 +280,7 @@ Array [
           <p
             className="text-center text-secondary"
           >
-            © AwesomeProject. All Rights Reserved.
+            © MattsSickWeb. All Rights Reserved.
           </p>
         </div>
       </div>
@@ -295,7 +294,7 @@ exports[`<Form /> shows loading state 1`] = `
 - First value
 + Second value
 
-@@ -119,30 +119,38 @@
+@@ -118,30 +118,38 @@
               >
                 <form
                   class=\\"\\"

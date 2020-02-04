@@ -35,7 +35,7 @@ exports[`<Header /> renders correctly 1`] = `
           fill="#fff"
         />
       </svg>
-      AwesomeProject
+      MattsSickWeb
     </a>
     <button
       aria-label="Toggle navigation"
@@ -48,7 +48,6 @@ exports[`<Header /> renders correctly 1`] = `
       />
     </button>
     <div
-      aria-expanded="false"
       className="collapse navbar-collapse"
       style={Object {}}
     >
