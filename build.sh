@@ -92,11 +92,20 @@ if [[ "REACT" == $APP_TYPE ]]; then
   yarn add @fortawesome/fontawesome-svg-core @fortawesome/free-brands-svg-icons @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome @rematch/core @rematch/loading @rematch/persist axios bootstrap jsonwebtoken moment node-sass prop-types react-helmet react-hook-form react-redux react-router-dom reactstrap redux-persist
 
   # Install Dev dependencies
-  yarn add @testing-library/jest-dom @testing-library/react eslint-config-airbnb eslint-plugin-import eslint-plugin-jest eslint-plugin-jsx-a11y eslint-plugin-react react-test-renderer snapshot-diff --dev
+  yarn add @testing-library/jest-dom @testing-library/react eslint-config-airbnb eslint-plugin-import eslint-plugin-jest eslint-plugin-jsx-a11y eslint-plugin-react react-test-renderer snapshot-diff gh-pages --dev
 
   # Copy our files (eg. appicon, launch screen, src code etc)
   rsync -r --inplace ./OURS/. ./ && rm -rf ./OURS
   rsync -r --inplace ./OURS-WEB/. ./ && rm -rf ./OURS-WEB
+
+  # Add gh_pages scripts
+  LC_ALL=C sed -i '' 's~"eject": "react-scripts eject"~"eject": "react-scripts eject", "predeploy": "react-scripts build", "deploy": "gh-pages -d build"~g' package.json
+
+  # Add gh_pages homepage
+  LC_ALL=C sed -i '' 's~"version": "0.1.0",~"version": "0.1.0", "homepage": "https://react-starter-kit.mcnam.ee",~g' package.json
+
+  # Add gh_pages SPA script
+  LC_ALL=C sed -i '' 's`</title>`</title> <script type="text/javascript">!function(i){if(i.search){var a={};i.search.slice(1).split("&").forEach((function(i){var l=i.split("=");a[l[0]]=l.slice(1).join("=").replace(/~and~/g,"&")})),void 0!==a.p&&window.history.replaceState(null,null,i.pathname.slice(0,-1)+(a.p||"")+(a.q?"?"+a.q:"")+i.hash)}}(window.location)</script>`g' public/index.html
 
 fi
 
