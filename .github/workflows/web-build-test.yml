@@ -42,6 +42,6 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-        repository: git@github.com:mcnamee/react-starter-test.git
+        repository: mcnamee/react-starter-test
         branch: master
         force: true
