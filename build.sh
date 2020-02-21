@@ -222,7 +222,7 @@ echo -e "---------------------------------------------------------------------"
 
 # Remove .git
 rm -rf .git
-# git init
+git init
 
 # Remove the setup script
 rm build.sh
