@@ -1,4 +1,18 @@
-# AwesomeProject - Expo (React Native) App
+<img src="/documentation/rnsk-logo.jpg" alt="React Native Starter Kit" width="400" />
+
+[![CryptoTip](https://img.shields.io/badge/Donate%20with-CryptoTip-blue.svg?style=flat&colorB=007bff)](https://cryptotip.it/p/mcnamee)  [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=U7CE3LJYX859E)
+
+---
+
+# React Native (Expo) App
+
+<a href="https://expo.io/@mcnamee/react-native-starter-kit"><img src="/documentation/expo-demo.jpg" alt="React Native Expo Demo" height="50" /></a>
+
+### Looking for something else?
+
+- [React Native Starter Kit (without Expo) / Boilerplate](https://github.com/mcnamee/react-native-starter-kit)
+- [React Starter Kit (web) / Boilerplate](https://github.com/mcnamee/react-starter-kit)
+- [Previous Version (React Starter Kit (Web + Native) w/ Firebase)](https://github.com/mcnamee/react-native-starter-kit/tree/archive/v3)
 
 ---
 
@@ -49,4 +63,4 @@ yarn start
 
 ## 👊 Further Help?
 
-This repo is a great place to start, but if you'd prefer to sit back and have your new project built for you, [get in touch with me directly](https://mcnam.ee) and I can organise a quote.
+This repo is a great place to start. But...if you'd prefer to sit back and have your new project built for you or just need some consultation, [get in touch with me directly](https://mcnam.ee) and I can organise a quote.

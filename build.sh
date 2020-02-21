@@ -34,7 +34,7 @@ if [[ -z "$APP_TYPE" ]]; then
   echo -e "\n  ➤  What type of app are you wanting to build? (enter the number)"
   echo -e "\n     1. React"
   echo -e "\n     2. React Native"
-  echo -e "\n     3. Expo (both web and native) \n"
+  echo -e "\n     3. React Native Expo \n"
   read -p " ==   " APP_TYPE
 fi
 
@@ -194,6 +194,10 @@ if [[ "EXPO" == $APP_TYPE ]]; then
   # Name the app correctly
   LC_ALL=C find . -type f -exec sed -i '' 's/com.AwesomeProject/com.'"$APP_NAME"'/g' {} +
   LC_ALL=C find . -type f -exec sed -i '' 's/org.reactjs.native.example/com/g' {} +
+  
+  # Change AsyncStorage to the Expo version
+  LC_ALL=C sed -i '' "s~AsyncStorage from '@react-native-community/async-storage'~{ AsyncStorage } from 'react-native'~g" src/store/index.js
+  LC_ALL=C sed -i '' "s~AsyncStorage from '@react-native-community/async-storage'~{ AsyncStorage } from 'react-native'~g" src/lib/api.js
 
   # Jest Test Config
   # LC_ALL=C sed -i '' 's~"private": true~"private": true,"preset": "@testing-library/react-native", "transformIgnorePatterns": ["node_modules/(?!((jest-)?react-native|react-clone-referenced-element?/.*|react-navigation|redux-persist|native-base(-shoutem-theme)|native-base|react-native-router-flux|@react-native-community/async-storage))"]~g' package.json
