@@ -1,4 +1,15 @@
-# AwesomeProject - React Native App
+<img src="/documentation/rnsk-logo.jpg" alt="React Native Starter Kit" width="400" />
+
+[![CryptoTip](https://img.shields.io/badge/Donate%20with-CryptoTip-blue.svg?style=flat&colorB=007bff)](https://cryptotip.it/p/mcnamee)  [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=U7CE3LJYX859E)
+
+---
+
+# React Native App
+
+### Looking for something else?
+
+- [React (web) Starter Kit / Boilerplate](https://github.com/mcnamee/react-starter-kit)
+- [Previous Version (React (Web + Native) Starter Kit w/ Firebase)](https://github.com/mcnamee/react-native-starter-kit/tree/archive/v3)
 
 ---
 
@@ -40,7 +51,7 @@ yarn install && ( cd ios && pod install )
 #### iOS
 
 ```bash
-# Open in Xcode
+# Open /ios/ReactNativeStarterKit.xcworkspace in Xcode
 # Change to Use the legacy Build System: `File > Workspace Settings > Build System > Legacy Build System`
 
 # Start in the iOS Simulator

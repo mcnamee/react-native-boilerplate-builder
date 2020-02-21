@@ -40,5 +40,5 @@ npx app-icon generate -i temp.png
 ## How do I change the React Native App Name/Bundle ID?
 
   - Use [react-native-rename](https://www.npmjs.com/package/react-native-rename)
-      - eg. `react-native-rename "Travel App" -b com.junedomingo.travelapp`
+      - eg. `npx react-native-rename "The Facebook" -b com.thefacebook.mobile-app`
   - Open the project in Xcode and double check that the Bundle ID has been updated (if not, correct it)

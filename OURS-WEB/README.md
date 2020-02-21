@@ -1,6 +1,19 @@
-# AwesomeProject - React Web App
+<img src="/documentation/rsk-logo.jpg" alt="React Native Starter Kit" width="400" />
 
-## [Demo](https://react-starter-kit.mcnam.ee/)
+[![CryptoTip](https://img.shields.io/badge/Donate%20with-CryptoTip-blue.svg?style=flat&colorB=007bff)](https://cryptotip.it/p/mcnamee)  [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=U7CE3LJYX859E)
+
+---
+
+# React Web App
+
+<a href="https://react-starter-kit.mcnam.ee/"><img src="/documentation/web-demo.jpg" alt="Web Demo" height="50" /></a>
+
+### Looking for something else?
+
+- [React Native Starter Kit / Boilerplate](https://github.com/mcnamee/react-native-starter-kit)
+- [Previous Version (React (Web + Native) Starter Kit w/ Firebase)](https://github.com/mcnamee/react-native-starter-kit/tree/archive/v3)
+
+---
 
 ## 👋 Intro
 
