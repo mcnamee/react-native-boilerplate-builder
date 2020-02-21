@@ -27,11 +27,11 @@ jobs:
     - name: Lint
       run: |
         ./node_modules/.bin/eslint "src/**/*.js"
-    - name: Jest Tests
-      run: |
-        yarn test
-      env:
-        CI: true
+#   - name: Jest Tests
+#     run: |
+#       yarn test
+#     env:
+#       CI: true
     - name: Commit files to React Native (Expo) Starter Kit repo
       run: |
         rm -rf .git
