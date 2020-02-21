@@ -35,7 +35,7 @@ jobs:
     - name: Commit files to React Starter Kit repo
       run: |
         rm -rf .git
-        git clone https://github.com/mcnamee/react-starter-test.git TEMP
+        git clone https://github.com/mcnamee/react-starter-kit.git TEMP
         mv TEMP/.git .git
         rm -rf TEMP
         git config --local user.email "matt@mcnamee.co"
@@ -46,5 +46,5 @@ jobs:
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-        repository: mcnamee/react-starter-test
+        repository: mcnamee/react-starter-kit
         branch: master

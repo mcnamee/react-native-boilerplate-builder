@@ -32,3 +32,19 @@ jobs:
         yarn test
       env:
         CI: true
+    - name: Commit files to React Native Starter Kit repo
+      run: |
+        rm -rf .git
+        git clone https://github.com/mcnamee/react-native-starter-kit.git TEMP
+        mv TEMP/.git .git
+        rm -rf TEMP
+        git config --local user.email "matt@mcnamee.co"
+        git config --local user.name "mcnamee/react-native-boilerplate-builder"
+        git add -A
+        git commit -m "Builder Bot (mcnamee/react-native-boilerplate-builder)" -a
+    - name: Push files to React Native Starter Kit repo
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        repository: mcnamee/react-native-starter-kit
+        branch: master

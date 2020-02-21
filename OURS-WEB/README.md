@@ -78,4 +78,4 @@ yarn run build
 
 ## 👊 Further Help?
 
-This repo is a great place to start, but if you'd prefer to sit back and have your new project built for you or just need consultation, [get in touch with me directly](https://mcnam.ee) and I can organise a quote.
+This repo is a great place to start. But...if you'd prefer to sit back and have your new project built for you or just need some consultation, [get in touch with me directly](https://mcnam.ee) and I can organise a quote.
