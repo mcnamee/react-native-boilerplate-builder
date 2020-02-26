@@ -139,11 +139,6 @@ if [[ "REACT NATIVE" == $APP_TYPE ]]; then
   # Eject Native Base
   node node_modules/native-base/ejectTheme.js
 
-  # Android, React Navigation/Native Screens fix
-  LC_ALL=C sed -i '' "s~dependencies {~dependencies {\\
-    implementation 'androidx.appcompat:appcompat:1.1.0-rc01'\\
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02'~g" android/app/build.gradle
-
   # Copy our files (eg. appicon, launch screen, src code etc)
   rsync -r --inplace ./OURS-NATIVE/ios/. ./ios/$APP_NAME && rm -rf ./OURS-NATIVE/ios
   rsync -r --inplace ./OURS/. ./ && rm -rf ./OURS
@@ -152,6 +147,43 @@ if [[ "REACT NATIVE" == $APP_TYPE ]]; then
   # Name the app correctly
   LC_ALL=C find . -type f -exec sed -i '' 's/com.AwesomeProject/com.'"$APP_NAME"'/g' {} +
   LC_ALL=C find . -type f -exec sed -i '' 's/org.reactjs.native.example/com/g' {} +
+
+  # iOS, Splash Screen config
+  LC_ALL=C sed -i '' 's~<React/RCTRootView.h>~<React/RCTRootView.h>\
+#import "RNSplashScreen.h"~g' ios/${APP_NAME}/AppDelegate.m
+  
+  LC_ALL=C sed -i '' "s~return YES;~[RNSplashScreen show];\\
+  return YES;~g" ios/${APP_NAME}/AppDelegate.m
+
+  # Android, Splash Screen config
+  LC_ALL=C sed -i '' "s~facebook.react.ReactActivity;~facebook.react.ReactActivity;\\
+import android.os.Bundle;\\
+import org.devio.rn.splashscreen.SplashScreen;~g" android/app/src/main/java/com/${APP_NAME_LOWER}/MainActivity.java
+
+  LC_ALL=C sed -i '' "s~ReactActivity {~ReactActivity {\\
+  // Show RN Splash Screen on launch\\
+  @Override\\
+  protected void onCreate(Bundle savedInstanceState) {\\
+    SplashScreen.show(this);\\
+    super.onCreate(savedInstanceState);\\
+  }~g" android/app/src/main/java/com/${APP_NAME_LOWER}/MainActivity.java
+
+  # Android, React Navigation/Native Screens fix
+  LC_ALL=C sed -i '' "s~dependencies {~dependencies {\\
+    implementation 'androidx.appcompat:appcompat:1.1.0-rc01'\\
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02'~g" android/app/build.gradle
+
+  # Add Xcode workspace settings (primarily the build system one)
+  mkdir ios/${APP_NAME}.xcworkspace/xcshareddata && echo '<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>BuildSystemType</key>
+        <string>Original</string>
+        <key>PreviewsEnabled</key>
+        <false/>
+    </dict>
+</plist>' > ios/${APP_NAME}.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
 
   # Jest Test Config
   LC_ALL=C sed -i '' 's~"preset": "react-native"~"preset": "@testing-library/react-native",\
