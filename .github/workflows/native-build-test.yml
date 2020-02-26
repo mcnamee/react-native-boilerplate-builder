@@ -44,7 +44,7 @@ jobs:
         git config --local user.email "matt@mcnamee.co"
         git config --local user.name "mcnamee/react-native-boilerplate-builder"
         git add -A
-        git commit -m $COMMIT_MESSAGE -a
+        git commit -m "${COMMIT_MESSAGE}" -a
     - name: Push files to React Native Starter Kit repo
       uses: ad-m/github-push-action@master
       with:
