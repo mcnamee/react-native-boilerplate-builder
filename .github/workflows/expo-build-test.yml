@@ -23,7 +23,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: Get Commit Message
       run: |
-        COMMIT_MESSAGE=$(git log -1 --pretty=format:"%s")
+        echo "::set-env name=COMMIT_MESSAGE::$(git log -1 --pretty=format:\"%s\")"
     - name: Build a fresh Expo App
       run: |
         bash build.sh --name=ReactNativeExpoStarterKit --type=3
