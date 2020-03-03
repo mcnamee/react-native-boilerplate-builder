@@ -241,7 +241,13 @@ if [[ "EXPO" == $APP_TYPE ]]; then
 
   # Jest Test Config
   # LC_ALL=C sed -i '' 's~"private": true~"private": true,"preset": "@testing-library/react-native", "transformIgnorePatterns": ["node_modules/(?!((jest-)?react-native|react-clone-referenced-element?/.*|react-navigation|redux-persist|native-base(-shoutem-theme)|native-base|react-native-router-flux|@react-native-community/async-storage))"]~g' package.json
-  LC_ALL=C sed -i '' 's~"private": true~"private": true,  "jest": { "preset": "@testing-library/react-native", "transformIgnorePatterns": [ "node_modules/(?!(jest-)?react-native|@expo/vector-icons|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base)" ] }~g' package.json
+  LC_ALL=C sed -i '' 's~"private": true~"private": true,\
+  "jest": {\
+    "preset": "@testing-library/react-native",\
+    "transformIgnorePatterns": [\
+      "node_modules/(?!(jest-)?react-native|@expo/vector-icons|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base)"\
+    ]\
+  }~g' package.json
   LC_ALL=C sed -i '' 's~"scripts": {~"scripts": {  "test": "jest",~g' package.json
 
 fi
