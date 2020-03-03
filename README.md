@@ -2,16 +2,21 @@
 
 This repo is used to create a new React &/or React Native App, using the latest version of React/React Native and all dependencies.
 
+All new commits (changes to this repo) are automatically pushed to:
+
+- [React Native Starter Kit](https://github.com/mcnamee/react-native-starter-kit)
+- [React Native Starter Kit (Expo version)](https://github.com/mcnamee/react-native-expo-starter-kit)
+- [React Starter Kit (web)](https://github.com/mcnamee/react-starter-kit)
+
 `build.sh` essentially just:
 
-- `npx create-react-app` or `react-native init`'s a new app
-    - _For React Native - Expo is great, however the majority of apps I build need third party native modules, so I now just default to plain old react-native_
+- `npx create-react-app`, `react-native init` or `expo init`'s a new app
 - Adds a bunch of commonly used dependencies (eg. Redux, a Router, Forms etc)
-- Adds familiar developer dependencies like the AirBnb linting code style
+- Adds familiar developer dependencies like the AirBnB linting code style
 - Adds a simple boilerplate codebase (with things like a directory structure, Redux and the Router configured, common components etc)
 - Adds familiar IDE configuration like prettier and eslint
 - Documentation for common tasks
-- Fastlane configuration for App Store deployment
+- (React Native) Fastlane configuration for App Store deployment
 
 ### ❓ Why?
 
@@ -24,11 +29,11 @@ Creating a project where dependency versions are not locked, can lead to instabi
 ## 🔨 Requirements
 
 - MacOS _(this creation script has only been tested on a Mac)_
-- Node v12+
+- Node v13+
 - NPM v6+
 - `yarn`
 - `rsync`
-- Cocoapods (React Native)
+- Cocoapods (for React Native)
 
 ## 🚀 Usage
 
