@@ -215,7 +215,7 @@ if [[ "EXPO" == $APP_TYPE ]]; then
   yarn add @react-native-community/async-storage @rematch/core @rematch/loading @rematch/persist axios jsonwebtoken moment native-base prop-types react-native-router-flux react-native-gesture-handler react-native-reanimated react-native-screens expo-font @expo/vector-icons react-redux redux-persist react-hook-form
 
   # Install (and remove) Dev dependencies
-  yarn add jest eslint babel-eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jest eslint-plugin-jsx-a11y eslint-plugin-react @testing-library/react-native react-test-renderer jest-expo --dev && yarn remove @react-native-community/eslint-config
+  yarn add jest eslint babel-eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jest eslint-plugin-jsx-a11y eslint-plugin-react @testing-library/react-native react-test-renderer jest-expo jest-transform-stub --dev && yarn remove @react-native-community/eslint-config
 
   # Eject Native Base
   node node_modules/native-base/ejectTheme.js
@@ -244,11 +244,15 @@ if [[ "EXPO" == $APP_TYPE ]]; then
   LC_ALL=C sed -i '' 's~"private": true~"private": true,\
   "jest": {\
     "preset": "@testing-library/react-native",\
+    "setupFiles": ["jest-expo/jest-preset.js"],\
+    "setupFilesAfterEnv": ["@testing-library/react-native/jest-preset.js"],\
+    "transform": { ".+\\.(png|jpg|ttf|woff|woff2)$": "jest-transform-stub" },\
     "transformIgnorePatterns": [\
       "node_modules/(?!(jest-)?react-native|@expo/vector-icons|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base)"\
     ]\
   }~g' package.json
-  LC_ALL=C sed -i '' 's~"scripts": {~"scripts": {  "test": "jest",~g' package.json
+  LC_ALL=C sed -i '' 's~"scripts": {~"scripts": {\
+  "test": "jest --silent",~g' package.json
 
 fi
 

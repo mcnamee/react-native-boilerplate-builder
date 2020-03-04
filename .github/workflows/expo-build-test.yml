@@ -30,11 +30,11 @@ jobs:
     - name: Lint
       run: |
         ./node_modules/.bin/eslint "src/**/*.js"
-#   - name: Jest Tests
-#     run: |
-#       yarn test
-#     env:
-#       CI: true
+    - name: Jest Tests
+      run: |
+        yarn test
+      env:
+        CI: true
     - name: Commit files to React Native (Expo) Starter Kit repo
       run: |
         rm -rf .git
@@ -44,7 +44,7 @@ jobs:
         git config --local user.email "matt@mcnamee.co"
         git config --local user.name "mcnamee/react-native-boilerplate-builder"
         git add -A
-        git commit -m "$COMMIT_MESSAGE" -a
+        git commit -m "$COMMIT_MESSAGE (RNBB Bot)" -a
     - name: Push files to React Native Starter Kit repo
       uses: ad-m/github-push-action@master
       with:
