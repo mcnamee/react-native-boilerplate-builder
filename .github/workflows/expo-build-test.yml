@@ -32,7 +32,7 @@ jobs:
         ./node_modules/.bin/eslint "src/**/*.js"
     - name: Jest Tests
       run: |
-        yarn test
+        jest --silent
       env:
         CI: true
     - name: Commit files to React Native (Expo) Starter Kit repo
