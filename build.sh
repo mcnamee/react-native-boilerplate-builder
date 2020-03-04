@@ -240,19 +240,14 @@ if [[ "EXPO" == $APP_TYPE ]]; then
   LC_ALL=C sed -i '' "s~AsyncStorage from '@react-native-community/async-storage'~{ AsyncStorage } from 'react-native'~g" src/lib/api.js
 
   # Jest Test Config
-  # LC_ALL=C sed -i '' 's~"private": true~"private": true,"preset": "@testing-library/react-native", "transformIgnorePatterns": ["node_modules/(?!((jest-)?react-native|react-clone-referenced-element?/.*|react-navigation|redux-persist|native-base(-shoutem-theme)|native-base|react-native-router-flux|@react-native-community/async-storage))"]~g' package.json
-  LC_ALL=C sed -i '' 's~"private": true~"private": true,\
-  "jest": {\
-    "preset": "@testing-library/react-native",\
+  LC_ALL=C sed -i '' 's~"preset": "jest-expo"~"preset": "@testing-library/react-native",\
     "setupFiles": ["jest-expo/jest-preset.js"],\
     "setupFilesAfterEnv": ["@testing-library/react-native/jest-preset.js"],\
-    "transform": { ".+\\.(png|jpg|ttf|woff|woff2)$": "jest-transform-stub" },\
+    "transform": { ".+\\\\.(png|jpg|ttf|woff|woff2)$": "jest-transform-stub" },\
     "transformIgnorePatterns": [\
       "node_modules/(?!(jest-)?react-native|@expo/vector-icons|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base)"\
-    ]\
-  }~g' package.json
-  LC_ALL=C sed -i '' 's~"scripts": {~"scripts": {\
-  "test": "jest --silent",~g' package.json
+    ]~g' package.json
+  LC_ALL=C sed -i '' 's~jest --watchAll~jest --watchAll --silent~g' package.json
 
 fi
 
