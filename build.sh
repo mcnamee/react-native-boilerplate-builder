@@ -251,7 +251,7 @@ if [[ "EXPO" == $APP_TYPE ]]; then
     ]\
   }~g' package.json
   LC_ALL=C sed -i '' 's~"scripts": {~"scripts": {\
-    "test": "jest --watchAll --silent",~g' package.json
+    "test": "jest --silent",~g' package.json
 
 fi
 
