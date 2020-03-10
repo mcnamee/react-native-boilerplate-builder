@@ -9,15 +9,15 @@ end
 platform :ios do
   desc 'Fetch certificates and provisioning profiles'
     lane :certificates do
-      match(app_identifier: 'com.AwesomeProject', type: 'development', readonly: true)
-      match(app_identifier: 'com.AwesomeProject', type: 'appstore', readonly: true)
+      match(app_identifier: 'com.AwesomeProject.app', type: 'development', readonly: true)
+      match(app_identifier: 'com.AwesomeProject.app', type: 'appstore', readonly: true)
     end
 
   desc 'Build the iOS application.'
     private_lane :build do
       # certificates
       # increment_build_number(xcodeproj: './ios/AwesomeProject.xcodeproj')
-      gym(scheme: 'AwesomeProject', project: './ios/AwesomeProject.xcodeproj')
+      gym(scheme: 'AwesomeProject', workspace: './ios/AwesomeProject.xcworkspace')
     end
 
   desc 'Ship to Testflight.'
