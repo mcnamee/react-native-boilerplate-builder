@@ -34,7 +34,7 @@ jobs:
         ./node_modules/.bin/eslint "src/**/*.js"
     - name: Jest Tests
       run: |
-        ./node_modules/.bin/jest --silent
+        ./node_modules/.bin/jest --silent -u
       env:
         CI: true
     - name: Commit files to React Native (Expo) Starter Kit repo
