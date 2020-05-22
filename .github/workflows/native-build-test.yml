@@ -1,6 +1,8 @@
 name: Native Build + Test
 
 on:
+  schedule:
+    - cron:  '30 9 * * MON'
   push:
     branches:
       - master
