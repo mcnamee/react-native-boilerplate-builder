@@ -2,7 +2,7 @@ name: Native Build + Test
 
 on:
   schedule:
-    - cron:  '30 9 * * MON'
+    - cron:  '* * * * MON'
   push:
     branches:
       - master
@@ -43,7 +43,7 @@ jobs:
         git clone https://github.com/mcnamee/react-native-starter-kit.git TEMP
         mv TEMP/.git .git
         rm -rf TEMP
-        git config --local user.email "${secrets.GH_EMAIL}"
+        git config --local user.email "${{ secrets.GH_EMAIL }}"
         git config --local user.name "mcnamee/react-native-boilerplate-builder"
         git add -A
         git commit -m "$COMMIT_MESSAGE (RNBB Bot)" -a
