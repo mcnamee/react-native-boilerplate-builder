@@ -37,9 +37,6 @@ jobs:
         yarn test
       env:
         CI: true
-    - name: Build demo
-      run: |
-        yarn build
     - name: Commit files to React Starter Kit repo
       run: |
         rm -rf .git
@@ -50,7 +47,6 @@ jobs:
         git config --local user.name "mcnamee/react-native-boilerplate-builder"
         git add -A
         git commit -m "$COMMIT_MESSAGE (RNBB Bot)" -a
-        yarn deploy
     - name: Push files to React Starter Kit repo
       uses: ad-m/github-push-action@master
       with:
