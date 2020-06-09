@@ -37,13 +37,16 @@ jobs:
         yarn test
       env:
         CI: true
+    - name: Build demo
+      run: |
+        yarn build
     - name: Commit files to React Starter Kit repo
       run: |
         rm -rf .git
         git clone https://github.com/mcnamee/react-starter-kit.git TEMP
         mv TEMP/.git .git
         rm -rf TEMP
-        git config --local user.email "matt@mcnamee.co"
+        git config --local user.email "${secrets.GH_EMAIL}"
         git config --local user.name "mcnamee/react-native-boilerplate-builder"
         git add -A
         git commit -m "$COMMIT_MESSAGE (RNBB Bot)" -a
