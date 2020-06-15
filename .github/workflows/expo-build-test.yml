@@ -2,7 +2,7 @@ name: Expo Build + Test
 
 on:
   schedule:
-    - cron:  '* * * * MON'
+    - cron:  '0 0 * * MON'
   push:
     branches:
       - master
