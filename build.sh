@@ -120,7 +120,7 @@ if [[ "REACT NATIVE" == $APP_TYPE ]]; then
   rm -rf .github
 
   # Install the latest React Native into a subdirectory
-  npx react-native init $APP_NAME
+  npx react-native init $APP_NAME --version 0.62.2
 
   # Copy all of the files into the root
   rsync -r --inplace --links --exclude '__tests__' ./$APP_NAME/. ./ && rm -rf $APP_NAME
@@ -187,9 +187,9 @@ import org.devio.rn.splashscreen.SplashScreen;~g" android/app/src/main/java/com/
 
   # Add fix for recent versions of RN, where " need to be gone
   # - https://github.com/facebook/react-native/issues/28483#issuecomment-610839293
-  LC_ALL=C sed -i '' 's~"\\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\\"",~"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",~g' ios/ReactNativeStarterKit.xcodeproj/project.pbxproj
-  LC_ALL=C sed -i '' 's~"\\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\\"",~"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)",~g' ios/ReactNativeStarterKit.xcodeproj/project.pbxproj
-  LC_ALL=C sed -i '' 's~"\\"$(inherited)\\"",~"$(inherited)",~g' ios/ReactNativeStarterKit.xcodeproj/project.pbxproj
+  LC_ALL=C sed -i '' 's~"\\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\\"",~"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",~g' ios/${APP_NAME}.xcodeproj/project.pbxproj
+  LC_ALL=C sed -i '' 's~"\\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\\"",~"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)",~g' ios/${APP_NAME}.xcodeproj/project.pbxproj
+  LC_ALL=C sed -i '' 's~"\\"$(inherited)\\"",~"$(inherited)",~g' ios/${APP_NAME}.xcodeproj/project.pbxproj
 
   # Jest Test Config
   LC_ALL=C sed -i '' 's~"preset": "react-native"~"preset": "@testing-library/react-native",\
