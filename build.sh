@@ -126,7 +126,7 @@ if [[ "REACT NATIVE" == $APP_TYPE ]]; then
   rsync -r --inplace --links --exclude '__tests__' ./$APP_NAME/. ./ && rm -rf $APP_NAME
 
   # Install extra dependencies
-  yarn add @react-native-community/async-storage @rematch/core @rematch/loading @rematch/persist axios jsonwebtoken moment native-base prop-types react-native-router-flux react-native-gesture-handler react-native-reanimated react-native-screens react-native-splash-screen react-native-vector-icons react-redux redux-persist react-hook-form
+  yarn add @react-native-community/async-storage @react-native-community/toolbar-android @rematch/core @rematch/loading @rematch/persist axios jsonwebtoken moment native-base prop-types react-native-router-flux react-native-gesture-handler react-native-reanimated react-native-screens react-native-splash-screen react-native-vector-icons react-redux redux-persist react-hook-form
 
   # Install (and remove) Dev dependencies
   yarn add babel-eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jest eslint-plugin-jsx-a11y eslint-plugin-react @testing-library/react-native --dev && yarn remove @react-native-community/eslint-config
@@ -184,6 +184,12 @@ import org.devio.rn.splashscreen.SplashScreen;~g" android/app/src/main/java/com/
         <false/>
     </dict>
 </plist>' > ios/${APP_NAME}.xcworkspace/xcshareddata/WorkspaceSettings.xcsettings
+
+  # Add fix for recent versions of RN, where " need to be gone
+  # - https://github.com/facebook/react-native/issues/28483#issuecomment-610839293
+  LC_ALL=C sed -i '' 's~"\\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\\"",~"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)",~g' ios/ReactNativeStarterKit.xcodeproj/project.pbxproj
+  LC_ALL=C sed -i '' 's~"\\"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)\\"",~"$(TOOLCHAIN_DIR)/usr/lib/swift-5.0/$(PLATFORM_NAME)",~g' ios/ReactNativeStarterKit.xcodeproj/project.pbxproj
+  LC_ALL=C sed -i '' 's~"\\"$(inherited)\\"",~"$(inherited)",~g' ios/ReactNativeStarterKit.xcodeproj/project.pbxproj
 
   # Jest Test Config
   LC_ALL=C sed -i '' 's~"preset": "react-native"~"preset": "@testing-library/react-native",\
