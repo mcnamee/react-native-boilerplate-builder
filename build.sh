@@ -194,7 +194,7 @@ import org.devio.rn.splashscreen.SplashScreen;~g" android/app/src/main/java/com/
   # Jest Test Config
   LC_ALL=C sed -i '' 's~"preset": "react-native"~"preset": "@testing-library/react-native",\
     "transformIgnorePatterns": [\
-      "node_modules/(?!((jest-)?react-native|react-clone-referenced-element?/.*|react-navigation|redux-persist|native-base(-shoutem-theme)|native-base|react-native-router-flux|@react-native-community/async-storage))"\
+      "node_modules/(?!((jest-)?react-native|react-clone-referenced-element?/.*|react-navigation|redux-persist|native-base(-shoutem-theme)|native-base|react-native-router-flux|@react-native-community/async-storage|moment))"\
     ]~g' package.json
 
 fi
@@ -253,7 +253,7 @@ if [[ "EXPO" == $APP_TYPE ]]; then
     "setupFilesAfterEnv": ["@testing-library/react-native/jest-preset.js"],\
     "transform": { ".+\\\\.(png|jpg|ttf|woff|woff2)$": "jest-transform-stub" },\
     "transformIgnorePatterns": [\
-      "node_modules/(?!(jest-)?react-native|@expo/vector-icons|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base)"\
+      "node_modules/(?!(jest-)?react-native|@expo/vector-icons|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|moment)"\
     ]\
   }~g' package.json
   LC_ALL=C sed -i '' 's~"scripts": {~"scripts": {\
