@@ -34,7 +34,7 @@ jobs:
         ./node_modules/.bin/eslint "src/**/*.js"
     - name: Jest Tests
       run: |
-        yarn test
+        yarn test -u
       env:
         CI: true
     - name: Commit files to React Starter Kit repo
