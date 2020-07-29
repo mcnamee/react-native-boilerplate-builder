@@ -72,8 +72,17 @@ LC_ALL=C find ./OURS-WEB -type f -exec sed -i '' 's/AwesomeProject/'"$APP_NAME"'
 LC_ALL=C find ./OURS-NATIVE -type f -exec sed -i '' 's/AwesomeProject/'"$APP_NAME"'/g' {} +
 LC_ALL=C find ./OURS-EXPO -type f -exec sed -i '' 's/AwesomeProject/'"$APP_NAME"'/g' {} +
 
-# React
+
 # ---------------------------------------------
+#   _     _  _______  _______ 
+#  | | _ | ||       ||  _    |
+#  | || || ||    ___|| |_|   |
+#  |       ||   |___ |       |
+#  |       ||    ___||  _   | 
+#  |   _   ||   |___ | |_|   |
+#  |__| |__||_______||_______|
+# ---------------------------------------------
+# React Web
 
 if [[ "REACT" == $APP_TYPE ]]; then
 
@@ -109,8 +118,16 @@ if [[ "REACT" == $APP_TYPE ]]; then
 
 fi
 
-# React Native
 # ---------------------------------------------
+#  __    _  _______  _______  ___   __   __  _______ 
+# |  |  | ||   _   ||       ||   | |  | |  ||       |
+# |   |_| ||  |_|  ||_     _||   | |  |_|  ||    ___|
+# |       ||       |  |   |  |   | |       ||   |___ 
+# |  _    ||       |  |   |  |   | |       ||    ___|
+# | | |   ||   _   |  |   |  |   |  |     | |   |___ 
+# |_|  |__||__| |__|  |___|  |___|   |___|  |_______|
+# ---------------------------------------------
+# React Native
 
 if [[ "REACT NATIVE" == $APP_TYPE ]]; then
 
@@ -120,7 +137,7 @@ if [[ "REACT NATIVE" == $APP_TYPE ]]; then
   rm -rf .github
 
   # Install the latest React Native into a subdirectory
-  npx react-native init $APP_NAME --version 0.62.2
+  npx react-native init $APP_NAME
 
   # Copy all of the files into the root
   rsync -r --inplace --links --exclude '__tests__' ./$APP_NAME/. ./ && rm -rf $APP_NAME
@@ -194,13 +211,21 @@ import org.devio.rn.splashscreen.SplashScreen;~g" android/app/src/main/java/com/
   # Jest Test Config
   LC_ALL=C sed -i '' 's~"preset": "react-native"~"preset": "@testing-library/react-native",\
     "transformIgnorePatterns": [\
-      "node_modules/(?!((jest-)?react-native|react-clone-referenced-element?/.*|react-navigation|redux-persist|native-base(-shoutem-theme)|native-base|react-native-router-flux|@react-native-community/async-storage|moment))"\
+      "node_modules/(?!((jest-)?react-native|react-clone-referenced-element?/.*|react-navigation|redux-persist|native-base(-shoutem-theme)|native-base|react-native-router-flux|@react-native-community/async-storage|moment|@codler))"\
     ]~g' package.json
 
 fi
 
-# Expo
 # ---------------------------------------------
+ # _______  __   __  _______  _______ 
+# |       ||  |_|  ||       ||       |
+# |    ___||       ||    _  ||   _   |
+# |   |___ |       ||   |_| ||  | |  |
+# |    ___| |     | |    ___||  |_|  |
+# |   |___ |   _   ||   |    |       |
+# |_______||__| |__||___|    |_______|
+# ---------------------------------------------
+# Expo
 
 if [[ "EXPO" == $APP_TYPE ]]; then
 
