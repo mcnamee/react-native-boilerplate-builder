@@ -23,9 +23,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Get Commit Message
-      run: |
-        echo "::set-env name=COMMIT_MESSAGE::$(git log -1 --pretty=format:%s)"
     - name: Build a fresh React Native App
       run: |
         bash build.sh --name=ReactNativeStarterKit --type=2
@@ -46,7 +43,7 @@ jobs:
         git config --local user.email "${{ secrets.GH_EMAIL }}"
         git config --local user.name "mcnamee/react-native-boilerplate-builder"
         git add -A
-        git commit -m "$COMMIT_MESSAGE (RNBB Bot)" -a
+        git commit -m "RNBB Bot updates" -a
     - name: Push files to React Native Starter Kit repo
       uses: ad-m/github-push-action@master
       with:
