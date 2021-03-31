@@ -29,7 +29,7 @@ Creating a project where dependency versions are not locked, can lead to instabi
 ## 🔨 Requirements
 
 - MacOS _(this creation script has only been tested on a Mac)_
-- Node v13+
+- Node v15+
 - NPM v6+
 - `yarn`
 - `rsync`
