@@ -143,13 +143,14 @@ if [[ "REACT NATIVE" == $APP_TYPE ]]; then
   rsync -r --inplace --links --exclude '__tests__' ./$APP_NAME/. ./ && rm -rf $APP_NAME
 
   # Install extra dependencies
-  yarn add @react-native-community/async-storage @react-native-community/toolbar-android @rematch/core @rematch/loading @rematch/persist axios jsonwebtoken moment native-base prop-types react-native-router-flux react-native-gesture-handler react-native-reanimated react-native-screens react-native-splash-screen react-native-vector-icons react-redux redux-persist react-hook-form
+  yarn add @react-native-community/async-storage @react-native-community/toolbar-android @rematch/core @rematch/loading @rematch/persist axios jsonwebtoken moment native-base prop-types react-native-router-flux react-native-gesture-handler react-native-reanimated react-native-screens react-native-splash-screen react-native-vector-icons react-redux redux-persist react-hook-form react-native-safe-area-context @react-native-community/masked-view
 
   # Install (and remove) Dev dependencies
   yarn add babel-eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jest eslint-plugin-jsx-a11y eslint-plugin-react @testing-library/react-native --dev && yarn remove @react-native-community/eslint-config
 
   # Link the dependencies
   npx react-native link
+  npx pod-install -y
   cd ios && pod install
   cd ../
 
@@ -209,10 +210,13 @@ import org.devio.rn.splashscreen.SplashScreen;~g" android/app/src/main/java/com/
   LC_ALL=C sed -i '' 's~"\\"$(inherited)\\"",~"$(inherited)",~g' ios/${APP_NAME}.xcodeproj/project.pbxproj
 
   # Jest Test Config
-  LC_ALL=C sed -i '' 's~"preset": "react-native"~"preset": "@testing-library/react-native",\
+  LC_ALL=C sed -i '' 's~"preset": "react-native"~"preset": "react-native",\
     "transformIgnorePatterns": [\
-      "node_modules/(?!((jest-)?react-native|react-clone-referenced-element?/.*|react-navigation|redux-persist|native-base(-shoutem-theme)|native-base|react-native-router-flux|@react-native-community/async-storage|moment|@codler))"\
-    ]~g' package.json
+      "node_modules/(?!((jest-)?react-native|@react-native|react-clone-referenced-element?/.*|react-navigation|redux-persist|native-base(-shoutem-theme)|native-base|react-native-router-flux|@react-native-community/async-storage|moment|@codler))"\
+    ],\
+    "globals": {\
+      "__DEV__": true\
+    }~g' package.json
 
 fi
 
