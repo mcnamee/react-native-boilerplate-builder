@@ -143,7 +143,7 @@ if [[ "REACT NATIVE" == $APP_TYPE ]]; then
   rsync -r --inplace --links --exclude '__tests__' ./$APP_NAME/. ./ && rm -rf $APP_NAME
 
   # Install extra dependencies
-  yarn add @react-native-community/async-storage @react-native-community/toolbar-android @rematch/core @rematch/loading @rematch/persist axios jsonwebtoken moment native-base prop-types react-native-router-flux react-native-gesture-handler react-native-reanimated react-native-screens react-native-splash-screen react-native-vector-icons react-redux redux-persist react-hook-form react-native-safe-area-context @react-native-community/masked-view
+  yarn add @react-native-community/async-storage @react-native-community/toolbar-android @rematch/core @rematch/loading @rematch/persist axios jsonwebtoken moment native-base@2 prop-types react-native-router-flux react-native-gesture-handler react-native-reanimated react-native-screens react-native-splash-screen react-native-vector-icons react-redux redux-persist react-hook-form react-native-safe-area-context @react-native-community/masked-view
 
   # Install (and remove) Dev dependencies
   yarn add babel-eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jest eslint-plugin-jsx-a11y eslint-plugin-react @testing-library/react-native --dev && yarn remove @react-native-community/eslint-config
